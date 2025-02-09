@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router';
+// import { Outlet } from 'react-router';
 
 import Directory from '../components/directory/directory.component.jsx';
 
@@ -34,7 +34,7 @@ const Home = () => {
 
   return (
     <div>
-      <Outlet />
+      {/* <Outlet /> */}
       <Directory categories={categories} />
     </div>
   );
