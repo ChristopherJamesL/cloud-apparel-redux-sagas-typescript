@@ -6,6 +6,12 @@ import {
     signInWithPopup, 
     GoogleAuthProvider 
 } from 'firebase/auth';
+import { 
+    getFirestore, 
+    doc, 
+    getDoc, 
+    setDoc 
+} from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,11 +29,45 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider;
+const provider = new GoogleAuthProvider();
 
 provider.setCustomParameters({
     prompt: 'select_account'
 });
 
+
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+// Initialize Cloud Firestore and get a reference to the service
+export const db = getFirestore(firebaseApp);
+
+export const createUserDocumentFromAuth = async (userAuth) => {
+    const userDocRef = doc(db, 'users', userAuth.uid);
+
+    console.log('users doc: ', userDocRef);
+
+    const userSnapShot = await getDoc(userDocRef);
+    console.log('user snapshot: ', userSnapShot);
+    console.log(userSnapShot.exists());
+
+    if (!userSnapShot.exists()) {
+        const { displayName, email } = userAuth;
+        const createdAt = new Date();
+
+        try {
+            await setDoc(userDocRef, {
+                displayName,
+                email,
+                createdAt
+            });
+        } catch (error) {
+            console.log('error creating user: ', error);
+        }
+        return userDocRef;
+    }
+
+    // check if user exists
+        // return if it does
+        // if doesn't, create(set) the data in users collection.
+}
