@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Outlet, Link } from 'react-router';
 
-import { ReactComponent as ClowdLogo } from '../../assets/cloud-svgrepo-com.svg'
+import { ReactComponent as ClowdLogo } from '../../assets/cloud-sun-svgrepo-com.svg'
 
 import './navigation.styles.scss';
 
@@ -14,6 +14,7 @@ const Navigation = () => {
                 </Link>
                 <div className='nav-links-container' >
                     <Link className='nav-link' to={'/shop'} >SHOP</Link>
+                    <Link className='nav-link' to={'/sign-in'} >SIGN IN</Link>
                 </div>
             </div>
             <Outlet />
