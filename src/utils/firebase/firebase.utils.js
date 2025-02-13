@@ -2,15 +2,15 @@
 import { initializeApp } from "firebase/app";
 import { 
     getAuth, 
-    signInWithRedirect, 
     signInWithPopup, 
-    GoogleAuthProvider 
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword
 } from 'firebase/auth';
 import { 
     getFirestore, 
     doc, 
     getDoc, 
-    setDoc 
+    setDoc,
 } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -45,11 +45,11 @@ export const db = getFirestore(firebaseApp);
 export const createUserDocumentFromAuth = async (userAuth) => {
     const userDocRef = doc(db, 'users', userAuth.uid);
 
-    console.log('users doc: ', userDocRef);
+    // console.log('users doc: ', userDocRef);
 
     const userSnapShot = await getDoc(userDocRef);
-    console.log('user snapshot: ', userSnapShot);
-    console.log(userSnapShot.exists());
+    // console.log('user snapshot: ', userSnapShot);
+    // console.log('snapshot exists?: ', userSnapShot.exists());
 
     if (!userSnapShot.exists()) {
         const { displayName, email } = userAuth;
@@ -70,4 +70,10 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     // check if user exists
         // return if it does
         // if doesn't, create(set) the data in users collection.
+}
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
+
+    return await createUserWithEmailAndPassword(auth, email, password);
 }
