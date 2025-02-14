@@ -41,8 +41,12 @@ const SignUpForm = () => {
 
             alert('Sign-up successful');
         } catch (error) {
-            console.log('Error during sign-up', error);
-            alert(`Error during sign-up: ${error.message}`);
+            if (error.code === 'auth/email-already-in-use') {
+                alert('Cannot create user, email already in use');
+            } else {
+                console.log('Error during sign-up', error);
+            }
+            // alert(`Error during sign-up: ${error.message}`);
         };
     };
 
@@ -54,7 +58,7 @@ const SignUpForm = () => {
     return (
         <div>
             <h1>Sign up with your email and password</h1>
-            <form onSubmit={(event) => handleSubmit(event)} >
+            <form onSubmit={handleSubmit} >
                 <label>Display Name</label>
                 <input 
                     type="text" 

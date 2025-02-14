@@ -42,7 +42,7 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(firebaseApp);
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     const userDocRef = doc(db, 'users', userAuth.uid);
 
     // console.log('users doc: ', userDocRef);
@@ -59,7 +59,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
             await setDoc(userDocRef, {
                 displayName,
                 email,
-                createdAt
+                createdAt,
+                ...additionalInformation
             });
         } catch (error) {
             console.log('error creating user: ', error);
