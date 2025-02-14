@@ -43,14 +43,13 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 export const db = getFirestore(firebaseApp);
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
+    // create a document reference for the user
     const userDocRef = doc(db, 'users', userAuth.uid);
 
-    // console.log('users doc: ', userDocRef);
-
+    // read the document reference above in the database
     const userSnapShot = await getDoc(userDocRef);
-    // console.log('user snapshot: ', userSnapShot);
-    // console.log('snapshot exists?: ', userSnapShot.exists());
 
+    // check if the document exists in the database, if it doesn't, create one.
     if (!userSnapShot.exists()) {
         const { displayName, email } = userAuth;
         const createdAt = new Date();
@@ -67,10 +66,6 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
         }
         return userDocRef;
     }
-
-    // check if user exists
-        // return if it does
-        // if doesn't, create(set) the data in users collection.
 }
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
