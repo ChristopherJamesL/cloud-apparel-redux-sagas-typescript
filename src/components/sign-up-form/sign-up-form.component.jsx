@@ -20,7 +20,9 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
     const [ formFields, setFormFields ] = useState(defaultFormFields);
-    const { displayName, email, password, confirmPassword } = formFields;    
+    const { displayName, email, password, confirmPassword } = formFields;  
+    
+    // console.log('hit');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -35,6 +37,7 @@ const SignUpForm = () => {
             // Create user with email and password
             const authResponse = await createAuthUserWithEmailAndPassword(email, password);
             const { user } = authResponse;
+
 
             // Create user document in Firestore
             await createUserDocumentFromAuth({ ...user, displayName });
