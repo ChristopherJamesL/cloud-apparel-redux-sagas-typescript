@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router";
 
 import App from './App';
 import { UserProvider } from './contexts/user.context';
+import { ProductsProvider } from './contexts/products.context';
 
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <ProductsProvider> {/* Products gets access to user, to filter products for instance based on region */}
+          <App />
+        </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
