@@ -7,6 +7,7 @@ import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component
 import { ReactComponent as ClowdLogo } from '../../assets/cloud-sun-svgrepo-com.svg';
 
 import { UserContext } from '../../contexts/user.context';
+import { CartContext } from '../../contexts/cart.context.jsx';
 
 import { signOutUser } from '../../utils/firebase/firebase.utils.js';
 
@@ -14,6 +15,7 @@ import './navigation.styles.scss';
 
 const Navigation = () => {
     const { currentUser } = useContext(UserContext);
+    const { isCartOpen } = useContext(CartContext);
 
     return (
         <Fragment>
@@ -23,16 +25,14 @@ const Navigation = () => {
                 </Link>
                 <div className='nav-links-container' >
                     <Link className='nav-link' to={'/shop'} >SHOP</Link>
-                    {
-                        currentUser ? (
-                            <span className='nav-link' onClick={signOutUser} >SIGN OUT</span>
-                        ) : (
-                            <Link className='nav-link' to={'/auth'} >SIGN IN</Link>
-                        )
-                    }
+                    {currentUser ? (
+                        <span className='nav-link' onClick={signOutUser} >SIGN OUT</span>
+                    ) : (
+                        <Link className='nav-link' to={'/auth'} >SIGN IN</Link>
+                    )}
                     <CartIcon  />
                 </div>
-                <CartDropdown />
+                {isCartOpen && <CartDropdown />}
             </div>
             <Outlet />
         </Fragment>

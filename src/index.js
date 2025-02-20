@@ -16,7 +16,9 @@ root.render(
     <BrowserRouter>
       <UserProvider>
         <ProductsProvider> {/* Products gets access to user, to filter products for instance based on region */}
-          <App />
+          <CartProvider> {/* Likely want cart to have access to user and products */}
+            <App />
+          </CartProvider>
         </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
