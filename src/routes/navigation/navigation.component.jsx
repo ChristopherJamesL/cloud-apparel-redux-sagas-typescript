@@ -1,7 +1,11 @@
 import { Fragment, useContext } from 'react';
 import { Outlet, Link } from 'react-router';
 
-import { ReactComponent as ClowdLogo } from '../../assets/cloud-sun-svgrepo-com.svg'
+import CartIcon  from '../../components/cart-icon/cart-icon.component';
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
+
+import { ReactComponent as ClowdLogo } from '../../assets/cloud-sun-svgrepo-com.svg';
+
 import { UserContext } from '../../contexts/user.context';
 
 import { signOutUser } from '../../utils/firebase/firebase.utils.js';
@@ -10,7 +14,6 @@ import './navigation.styles.scss';
 
 const Navigation = () => {
     const { currentUser } = useContext(UserContext);
-    // console.log(currentUser);
 
     return (
         <Fragment>
@@ -27,7 +30,9 @@ const Navigation = () => {
                             <Link className='nav-link' to={'/auth'} >SIGN IN</Link>
                         )
                     }
+                    <CartIcon  />
                 </div>
+                <CartDropdown />
             </div>
             <Outlet />
         </Fragment>
