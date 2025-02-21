@@ -1,6 +1,6 @@
 .cart-dropdown-container { 
     position: absolute; 
-    width: 245px; 
+    width: 250px; 
     height: 340px; 
     display: flex; 
     flex-direction: column; 
@@ -21,15 +21,7 @@
         display: flex; 
         flex-direction: column; 
         overflow: auto; 
-
-        // overflow: auto; /* Change from 'scroll' to 'auto' */
-        // scrollbar-width: none; /* Hide scrollbar for Firefox */
-        // -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
     } 
-
-    // .cart-items::-webkit-scrollbar { /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
-    //     display: none;
-    // }
     
     button { 
         margin-top: auto; 
