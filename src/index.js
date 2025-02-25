@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router";
 
 import App from './App';
 import { UserProvider } from './contexts/user.context';
-import { ProductsProvider } from './contexts/products.context';
+import { CategoriesProvider } from './contexts/categories.context';
 import { CartProvider } from './contexts/cart.context';
 
 import './index.scss';
@@ -15,11 +15,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <ProductsProvider> {/* Products gets access to user, to filter products for instance based on region */}
+        <CategoriesProvider> {/* Products gets access to user, to filter products for instance based on region */}
           <CartProvider> {/* Likely want cart to have access to user and products */}
             <App />
           </CartProvider>
-        </ProductsProvider>
+        </CategoriesProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
