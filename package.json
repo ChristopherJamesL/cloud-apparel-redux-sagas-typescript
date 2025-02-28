@@ -10,6 +10,7 @@
     "react-router": "^7.1.5",
     "react-scripts": "5.0.1",
     "sass": "^1.84.0",
+    "styled-components": "^6.1.15",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
