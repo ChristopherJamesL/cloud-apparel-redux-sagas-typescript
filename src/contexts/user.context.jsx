@@ -1,5 +1,7 @@
 import { createContext, useEffect, useReducer } from 'react';
 
+import { createAction } from '../utils/reducer/reducer.utils';
+
 import { onAuthStateChangedListener, createUserDocumentFromAuth } from '../utils/firebase/firebase.utils';
 
 // as the actual value(with default values) that you want to access.
@@ -17,7 +19,7 @@ const userReducer = (state, action) => {
     console.log('action:', action);
     const { type, payload } = action;
     
-    switch(type) {
+    switch (type) {
         case USER_ACTION_TYPES.SET_CURRENT_USER:
             return {
                 ...state,  //spread through previous state, and then update values you want to change/add.
@@ -38,7 +40,7 @@ export const UserProvider = ({ children }) => {
     console.log(currentUser);
 
     const setCurrentUser = (user) => {
-        dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user });
+        dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user));
     }
     
     const value = { currentUser, setCurrentUser }; // provide access to state and setter function to whole app
