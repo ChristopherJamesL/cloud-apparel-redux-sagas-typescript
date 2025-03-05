@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router";
+import { Provider } from 'react-redux';
 
 import App from './App';
-import { UserProvider } from './contexts/user.context';
 import { CategoriesProvider } from './contexts/categories.context';
 import { CartProvider } from './contexts/cart.context';
+import { store } from './store/store';
 
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
@@ -13,15 +14,15 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
-        <CategoriesProvider> {/* Products gets access to user, to filter products for instance based on region */}
-          <CartProvider> {/* Likely want cart to have access to user and products */}
-            <App />
-          </CartProvider>
-        </CategoriesProvider>
-      </UserProvider>
-    </BrowserRouter>
+    <Provider store={store} >
+      <BrowserRouter>
+          <CategoriesProvider> {/* Products gets access to user, to filter products for instance based on region */}
+            <CartProvider> {/* Likely want cart to have access to user and products */}
+              <App />
+            </CartProvider>
+          </CategoriesProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
