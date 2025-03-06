@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router";
 import { Provider } from 'react-redux';
 
 import App from './App';
-import { CategoriesProvider } from './contexts/categories.context';
 import { CartProvider } from './contexts/cart.context';
 import { store } from './store/store';
 
@@ -15,12 +14,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store} >
-      <BrowserRouter>
-          <CategoriesProvider> {/* Products gets access to user, to filter products for instance based on region */}
-            <CartProvider> {/* Likely want cart to have access to user and products */}
-              <App />
-            </CartProvider>
-          </CategoriesProvider>
+      <BrowserRouter>          
+          <CartProvider> {/* Likely want cart to have access to user and products */}
+            <App />
+          </CartProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
