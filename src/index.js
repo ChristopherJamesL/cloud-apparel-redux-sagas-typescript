@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router";
 import { Provider } from 'react-redux';
 
 import App from './App';
-import { CartProvider } from './contexts/cart.context';
 import { store } from './store/store';
 
 import './index.scss';
@@ -15,9 +14,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store} >
       <BrowserRouter>          
-          <CartProvider> {/* Likely want cart to have access to user and products */}
-            <App />
-          </CartProvider>
+          <App />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
