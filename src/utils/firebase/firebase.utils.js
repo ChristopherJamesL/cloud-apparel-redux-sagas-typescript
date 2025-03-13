@@ -62,8 +62,8 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
     console.log('done');
 }
 
-export const getCategoriesAndDocuments = async () => {
-    const collectionRef = collection(db, 'categories');
+export const getCategoriesAndDocuments = async (category) => {
+    const collectionRef = collection(db, category/* 'categories' */);
     const q = query(collectionRef);
 
     const querySnapshot = await getDocs(q);
@@ -92,8 +92,8 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
         } catch (error) {
             console.log('error creating user: ', error);
         }
-        return userDocRef;
     }
+    return userSnapShot;
 }
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
