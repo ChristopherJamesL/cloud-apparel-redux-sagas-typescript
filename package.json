@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.11",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
     "cra-template": "1.2.0",
     "firebase": "^11.3.0",
     "react": "^18.2.0",
@@ -18,6 +22,7 @@
     "reselect": "^5.1.1",
     "sass": "^1.84.0",
     "styled-components": "^6.1.15",
+    "typescript": "^5.8.2",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
