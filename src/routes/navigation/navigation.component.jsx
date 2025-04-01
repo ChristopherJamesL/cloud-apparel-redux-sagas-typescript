@@ -10,7 +10,7 @@ import { ReactComponent as ClowdLogo } from '../../assets/cloud-sun-svgrepo-com.
 import { selectCurrentUser } from '../../store/user/user.selector';
 import { selectIsCartOpen } from '../../store/cart/cart.selector';
 
-import { signOutStart } from '../../store/user/user.action.js';
+import { signOutStart } from '../../store/user/user.action';
 
 import { NavigationContainer, LogoContainer, NavLinks, NavLink } from './navigation.styles.jsx';
 
