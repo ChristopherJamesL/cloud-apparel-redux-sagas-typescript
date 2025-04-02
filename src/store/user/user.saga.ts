@@ -54,15 +54,6 @@ export type SignUpSaga = Generator<
     UserCredential | undefined
 >;
 export type UserSnapShotSaga = BasicSaga<UserDocumentSnapshot | void>;
-export type VoidSaga = BasicSaga<void>;
-export type SagaGenerator<RT = void> = Generator<
-    CallEffect<RT> | PutEffect<{ type: string; payload?: any }>,
-    void,
-    RT
->;
-export type WatcherSagaGenerator = Generator<ForkEffect<never>, void, never>;
-export type RootSagaGenerator = Generator<AllEffect<CallEffect<void>>, void, never>;
-// export type UserSnapShotData = { id: string; [key: string]: any };
 export type UserData = { email: string; displayName: string; createdAt: Date };
 export type UserDocumentSnapshot = { id: string; data: () => UserData; exists: boolean };
 
