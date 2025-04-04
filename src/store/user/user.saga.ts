@@ -5,13 +5,9 @@ import {
     call,
     CallEffect,
     PutEffect,
-    ForkEffect,
-    AllEffect
 } from "redux-saga/effects";
 import { User, UserCredential } from "firebase/auth";
-
 import { USER_ACTION_TYPES } from "./user.types";
-
 import { 
     signInSuccess, 
     signInFailed, 
@@ -23,7 +19,6 @@ import {
     SignUpStart,
     SignUpSuccess
 } from "./user.action";
-
 import { 
     getCurrentUser, 
     createUserDocumentFromAuth,
@@ -31,7 +26,7 @@ import {
     signInAuthUserWithEmailAndPassword,
     createAuthUserWithEmailAndPassword,
     signOutUser,
-    AdditionalInformation
+    AdditionalInformation,
 } from "../../utils/firebase/firebase.utils";
 
 // ===== Hybrid Saga Types =====

@@ -1,4 +1,5 @@
-import { BaseButton, GoogleSignInButton, InvertedButton } from './button.styles.jsx';
+import { FC, ButtonHTMLAttributes } from 'react';
+import { BaseButton, GoogleSignInButton, InvertedButton } from './button.styles';
 
 /*
 3 Types of buttons:
@@ -7,10 +8,10 @@ import { BaseButton, GoogleSignInButton, InvertedButton } from './button.styles.
     3) google sign in
 */
 
-export const BUTTON_TYPE_CLASSES = {
-    base: 'base',
-    google: 'google-sign-in',
-    inverted: 'inverted'
+export enum BUTTON_TYPE_CLASSES {
+    base = 'base',
+    google = 'google-sign-in',
+    inverted = 'inverted'
 };
 
 const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) => 
@@ -20,7 +21,11 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>
         [BUTTON_TYPE_CLASSES.inverted]: InvertedButton,
     }[buttonType]);
 
-const Button = ({ children, buttonType, ...otherProps }) => {
+export type ButtonProps = {
+    buttonType?: BUTTON_TYPE_CLASSES;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
+
+const Button: FC<ButtonProps> = ({ children, buttonType, ...otherProps }) => {
     const CustomButton = getButton(buttonType);
     return <CustomButton {...otherProps}>{children}</CustomButton>
 }
