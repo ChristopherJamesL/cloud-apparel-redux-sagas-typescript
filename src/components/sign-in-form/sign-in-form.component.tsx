@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
-import './sign-in-form.styles.scss'
+import { SignInContainer, ButtonContainer } from './sign-in-form.styles'
 import { googleSignInStart, emailSignInStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
@@ -23,15 +23,14 @@ const SignInForm = () => {
         dispatch(googleSignInStart());
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         try {
             dispatch(emailSignInStart(email, password));
-            // Reset form fields
             setFormFields(defaultFormFields);
         } catch (error) {
-            switch(error.code) {
+            switch((error as { code: string }).code) {
                 case 'auth/invalid-credential':
                     alert('incorrect email or password');
                     break;
@@ -44,13 +43,13 @@ const SignInForm = () => {
         };
     };
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormFields({ ...formFields, [name]: value });
     }
 
     return (
-        <div className="sign-up-container" >
+        <SignInContainer >
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit} >
@@ -72,7 +71,7 @@ const SignInForm = () => {
                     value={password} 
                 />
 
-                <div className="buttons-container" >
+                <ButtonContainer >
                     <Button type="submit" >Sign In</Button>
                     <Button 
                         type='button' 
@@ -81,9 +80,9 @@ const SignInForm = () => {
                     >
                         GOOGLE SIGN IN
                     </Button>
-                </div>
+                </ButtonContainer>
             </form>
-        </div>
+        </SignInContainer>
     )
 }
 

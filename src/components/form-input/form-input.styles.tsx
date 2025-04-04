@@ -9,7 +9,11 @@ const shrinkLabelStyles = css`
     color: ${mainColor}; // Change the text color to black
 `;
 
-export const FormInputLabel = styled.label`
+type FormInputLabelProps = {
+    $shrink?: boolean;
+}
+
+export const FormInputLabel = styled.label<FormInputLabelProps>`
     color: ${subColor}; // Set default text color to grey
     font-size: 16px; // Set default font size
     font-weight: normal; // Set font weight
