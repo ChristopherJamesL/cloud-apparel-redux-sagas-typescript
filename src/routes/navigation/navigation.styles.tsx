@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-import { Link } from 'react-router';
+import { Link, LinkProps } from 'react-router-dom';
+import { ComponentProps } from "react";
 
 export const NavigationContainer = styled.div`
     height: 70px; 
@@ -24,7 +25,14 @@ export const NavLinks = styled.div`
     justify-content: flex-end; 
 `;
 
-export const NavLink = styled(Link)`
+type NavLinkProps = {
+    as?: React.ElementType;
+} & ComponentProps<'a'> & Partial<LinkProps>;
+
+export const NavLink = styled(Link).attrs<NavLinkProps>(({ to }) => ({
+    to: to || '#', // Fallback for when used as span
+  }))<NavLinkProps>`
     padding: 10px 15px; 
     cursor: pointer; 
-`;
+  `;
+

@@ -12,7 +12,7 @@ import { selectIsCartOpen } from '../../store/cart/cart.selector';
 
 import { signOutStart } from '../../store/user/user.action';
 
-import { NavigationContainer, LogoContainer, NavLinks, NavLink } from './navigation.styles.jsx';
+import { NavigationContainer, LogoContainer, NavLinks, NavLink } from './navigation.styles';
 
 const Navigation = () => {
     const dispatch = useDispatch();
